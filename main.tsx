@@ -77,6 +77,10 @@ async function Home(req: Request) {
     return (
       <div>
         <h1>Welcome to Dash Todo</h1>
+        <p>
+          This is the _ultimate_ todo application, for all of your todo
+          application needs!
+        </p>
         <form action="/createuser" method="POST">
           <label htmlFor="name">Name</label>
           <input name="name" id="name" type="text" />
