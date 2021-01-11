@@ -23,11 +23,13 @@ serve({
 });
 
 async function Home(req: Request) {
+  const cookie = req.headers.get("Cookie");
+  if (cookie) {
+    // FIXME: workaround for a bug upstream
+    req.headers.set("Cookie", cookie.replaceAll(", ", "; "));
+  }
   const cookies = getCookies(req);
   const userId: string | undefined = cookies["user"];
-  console.log(`header: ${req.headers.get("Cookie")}`);
-  console.log(`cookies: ${JSON.stringify(cookies)}`);
-  console.log(`userId: ${userId}`);
 
   if (userId) {
     const user = await getUser(userId);
