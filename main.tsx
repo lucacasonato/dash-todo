@@ -24,12 +24,16 @@ serve({
 
 console.error = console.log;
 
-async function Home(req: Request) {
+function fixCookies(req: Request) {
   const cookie = req.headers.get("Cookie");
   if (cookie) {
     // FIXME: workaround for a bug upstream
     req.headers.set("Cookie", cookie.replaceAll(", ", "; "));
   }
+}
+
+async function Home(req: Request) {
+  fixCookies(req);
   const cookies = getCookies(req);
   const userId: string | undefined = cookies["user"];
 
@@ -152,6 +156,7 @@ export async function Signin(req: Request) {
 }
 
 export async function AddTodo(req: Request) {
+  fixCookies(req);
   if (req.method == "POST") {
     const cookies = getCookies(req);
     const userId: string | undefined = cookies["user"];
@@ -172,6 +177,7 @@ export async function AddTodo(req: Request) {
 }
 
 export async function UpdateTodo(req: Request) {
+  fixCookies(req);
   if (req.method == "POST") {
     const cookies = getCookies(req);
     const userId: string | undefined = cookies["user"];
