@@ -25,7 +25,7 @@ serve({
 async function Home(req: Request) {
   const cookies = getCookies(req);
   const userId: string | undefined = cookies["user"];
-  console.log(`headers: ${JSON.stringify(req.headers)}`);
+  console.log(`header: ${req.headers.get("Cookie")}`);
   console.log(`cookies: ${JSON.stringify(cookies)}`);
   console.log(`userId: ${userId}`);
 
