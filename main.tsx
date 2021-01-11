@@ -22,6 +22,8 @@ serve({
   "/signout": Signout,
 });
 
+console.error = console.log;
+
 async function Home(req: Request) {
   const cookie = req.headers.get("Cookie");
   if (cookie) {
