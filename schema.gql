@@ -1,0 +1,10 @@
+type User {
+  name: String!
+  todos: [Todo!] @relation
+}
+
+type Todo {
+  title: String!
+  completed: Boolean!
+  owner: User!
+}
