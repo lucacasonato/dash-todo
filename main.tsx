@@ -117,7 +117,7 @@ export async function CreateUser(req: Request) {
     setCookie(response, {
       name: "user",
       value: user._id,
-      sameSite: "Strict",
+      sameSite: "Lax",
     });
     return response;
   }
